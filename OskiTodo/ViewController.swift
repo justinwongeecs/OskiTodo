@@ -64,6 +64,9 @@ class ViewController: UIViewController {
 
 }
 
+
+// MARK: - UITableView Delegates
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +83,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+
+// MARK: - TodoCell
 
 class TodoCell: UITableViewCell {
     
