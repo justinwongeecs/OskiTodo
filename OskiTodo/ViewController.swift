@@ -7,9 +7,19 @@
 
 import UIKit
 
+struct Todo {
+    var name: String
+    var date: Date
+    var isCompleted: Bool
+}
+
 class ViewController: UIViewController {
     
     private let button = UIButton(type: .custom)
+    private let todoTableView = UITableView()
+    
+    private var todos: [Todo] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +32,7 @@ class ViewController: UIViewController {
     
     private func configureCreateTodoButton() {
         button.setTitle("Create Todo", for: .normal)
-        button.titleLabel?.textColor = UIColor.systemRed
+        button.titleLabel?.textColor = UIColor.white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         button.backgroundColor = UIColor.systemBlue
         button.layer.cornerRadius = 20
@@ -30,22 +40,26 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
-        button.addTarget(self, action: #selector(createTodo), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentNewTodoVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             button.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
-    @objc private func createTodo() {
-        print("Create Todo!")
+    @objc internal func presentNewTodoVC() {
+        let newTodoVC = NewTodoViewController()
+        newTodoVC.delegate = self
+        
+        let navController = UINavigationController(rootViewController: newTodoVC)
+        present(navController, animated: true)
     }
     
     private func configureTodoTableView() {
-        let todoTableView = UITableView()
+       
         todoTableView.delegate = self
         todoTableView.dataSource = self
         todoTableView.backgroundColor = .systemRed
@@ -70,18 +84,35 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return todos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let todoCell = tableView.dequeueReusableCell(withIdentifier: TodoCell.reuseID) as? TodoCell {
-            todoCell.setTodoNumber(to: indexPath.row)
+            todoCell.setTodo(for: todos[indexPath.row])
             return todoCell
         }
         
         return UITableViewCell()
     }
     
+}
+
+
+// MARK: - NewTodoViewControllerDelegate
+
+extension ViewController: NewTodoViewControllerDelegate {
+    func createTodo(title: String?) {
+        guard let title else {
+            return
+        }
+        
+        todos.append(Todo(name: title, date: Date(), isCompleted: false))
+        todoTableView.reloadData()
+        
+        dismiss(animated: true)
+        
+    }
 }
 
 
@@ -103,8 +134,8 @@ class TodoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setTodoNumber(to number: Int) {
-        todoNameLabel.text = "Todo \(number)"
+    func setTodo(for todo: Todo) {
+        todoNameLabel.text = todo.name
     }
     
     private func configureTodoCell() {

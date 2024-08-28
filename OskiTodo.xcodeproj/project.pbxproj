@@ -12,6 +12,7 @@
 		E838FF022C67F784008D1077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FF012C67F784008D1077 /* ViewController.swift */; };
 		E838FF072C67F786008D1077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E838FF062C67F786008D1077 /* Assets.xcassets */; };
 		E838FF0A2C67F786008D1077 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E838FF092C67F786008D1077 /* Base */; };
+		E845E61C2C713F83003DE764 /* NewTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845E61B2C713F83003DE764 /* NewTodoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E838FF062C67F786008D1077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E838FF092C67F786008D1077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E838FF0B2C67F786008D1077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E845E61B2C713F83003DE764 /* NewTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				E838FEFD2C67F784008D1077 /* AppDelegate.swift */,
 				E838FEFF2C67F784008D1077 /* SceneDelegate.swift */,
 				E838FF012C67F784008D1077 /* ViewController.swift */,
+				E845E61B2C713F83003DE764 /* NewTodoViewController.swift */,
 				E838FF062C67F786008D1077 /* Assets.xcassets */,
 				E838FF082C67F786008D1077 /* LaunchScreen.storyboard */,
 				E838FF0B2C67F786008D1077 /* Info.plist */,
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E838FF022C67F784008D1077 /* ViewController.swift in Sources */,
+				E845E61C2C713F83003DE764 /* NewTodoViewController.swift in Sources */,
 				E838FEFE2C67F784008D1077 /* AppDelegate.swift in Sources */,
 				E838FF002C67F784008D1077 /* SceneDelegate.swift in Sources */,
 			);
